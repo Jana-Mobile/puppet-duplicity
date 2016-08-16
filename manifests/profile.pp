@@ -267,7 +267,7 @@ define duplicity::profile(
 
   cron { "backup-${title}":
     ensure      => $cron_ensure,
-    command     => "duply ${title} cleanup_backup+purgeFull --force &>> ${duplicity::duply_log_dir}/${title}.log",
+    command     => "duply ${title} cleanup_backup+purgeFull --force &>> ${duplicity::duply_log_dir}/${title}.log && touch ${duplicity::duply_log_dir}/.${title}.done",
     environment => "PATH=${duplicity::exec_path}",
     user        => 'root',
     hour        => $cron_hour,

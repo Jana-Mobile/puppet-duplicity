@@ -53,7 +53,7 @@ class duplicity::setup inherits duplicity {
     ensure => directory,
     owner  => 'root',
     group  => $duplicity::duply_log_group,
-    mode   => '0640',
+    mode   => '0644',
   }
 
   logrotate::rule { 'duply':

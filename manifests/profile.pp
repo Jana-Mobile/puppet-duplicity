@@ -89,6 +89,8 @@ define duplicity::profile(
   $cron_enabled           = $duplicity::cron_enabled,
   $cron_hour              = undef,
   $cron_minute            = undef,
+  $exec_before            = "#!/bin/bash\n",
+  $exec_after             = "#!/bin/bash\n",
   $duplicity_extra_params = $duplicity::duplicity_extra_params,
 ) {
   require duplicity
@@ -239,7 +241,7 @@ define duplicity::profile(
 
   profile_exec_before { "${title}/header":
     profile => $title,
-    content => "#!/bin/bash\n",
+    content => $exec_before,
     order   => '01',
   }
 
@@ -253,7 +255,7 @@ define duplicity::profile(
 
   profile_exec_after { "${title}/header":
     profile => $title,
-    content => "#!/bin/bash\n",
+    content => $exec_after,
     order   => '01',
   }
 
